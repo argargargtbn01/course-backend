@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
+import { UserModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { TeachersModule } from './teachers/teachers.module';
+import { StudentsModule } from './students/students.module';
 console.log('node_env: ', process.env.NODE_ENV);
 const databaseHost =
   process.env.NODE_ENV === 'Production' ? 'host.docker.internal' : 'localhost';
@@ -21,6 +23,8 @@ const databaseHost =
       synchronize: true,
     }),
     UserModule,
+    TeachersModule,
+    StudentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
