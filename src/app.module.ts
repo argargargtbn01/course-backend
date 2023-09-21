@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { TeachersModule } from './teachers/teachers.module';
 import { StudentsModule } from './students/students.module';
+import { CoursesModule } from './courses/courses.module';
 console.log('node_env: ', process.env.NODE_ENV);
 const databaseHost =
   process.env.NODE_ENV === 'Production' ? 'host.docker.internal' : 'localhost';
@@ -25,6 +26,7 @@ const databaseHost =
     UserModule,
     TeachersModule,
     StudentsModule,
+    CoursesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
