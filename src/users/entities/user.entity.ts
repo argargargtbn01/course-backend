@@ -8,7 +8,7 @@ export enum UserRole {
 @Entity()
 export class User extends AbstractAuditingEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column()
   username: string;

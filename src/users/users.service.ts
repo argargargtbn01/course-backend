@@ -14,7 +14,7 @@ export class UserService {
   async findAll(): Promise<User[]> {
     return await this.userRepo.find();
   }
-  async findById(id: string): Promise<User> {
+  async findById(id: number): Promise<User> {
     return await this.userRepo.findOne({
       where: {
         id,
@@ -25,12 +25,12 @@ export class UserService {
     return await this.userRepo.save(createUserDto);
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     await this.userRepo.update({ id }, updateUserDto);
     return this.findById(id);
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: number): Promise<void> {
     await this.userRepo.delete(id);
   }
 }

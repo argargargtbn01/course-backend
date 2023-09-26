@@ -9,7 +9,7 @@ import { StudentsModule } from './students/students.module';
 import { CoursesModule } from './courses/courses.module';
 console.log('node_env: ', process.env.NODE_ENV);
 const databaseHost =
-  process.env.NODE_ENV === 'Production' ? 'host.docker.internal' : 'localhost';
+  process.env.NODE_ENV === 'Production' ? 'host.docker.internal' : '127.0.0.1';
 @Module({
   imports: [
     ConfigModule.forRoot(),

@@ -1,7 +1,11 @@
+import { Student } from 'src/students/entities/student.entity';
 import { Teacher } from 'src/teachers/entities/teacher.entity';
 import {
   Column,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -25,9 +29,14 @@ export class Course {
   })
   courseClassId: number;
 
-  @ManyToOne(() => Teacher)
+  @ManyToOne(() => Teacher, (teacher) => teacher.courses, {
+    cascade: true,
+  })
+  @JoinColumn({
+    name: 'user_id',
+  })
   teacher: Teacher;
 
-  @OneToMany(() => Student)
-  student: Student;
+  @ManyToMany(() => Student, (student) => student.courses)
+  students: Student[];
 }
