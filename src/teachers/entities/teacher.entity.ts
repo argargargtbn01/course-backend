@@ -1,13 +1,22 @@
 import { Course } from 'src/courses/entities/course.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Entity, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import {
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Teacher {
-  @PrimaryColumn()
-  @OneToOne(() => User, { cascade: true, eager: true })
-  userId: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @OneToMany(() => Course, (course) => course.teacher)
   courses: Course[];
+
+  @OneToOne(() => User, { cascade: true })
+  @JoinColumn()
+  user: User;
 }
